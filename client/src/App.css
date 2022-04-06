@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 200px;
+    height: max-content;
+    margin: auto;
+    padding: 20px 15px;
+    background-color: #ebebeb;
+    margin-top: 120px;
+    border-radius: 8px;
+    font-family: sans-serif;
+}
+
+h1{
+    margin-bottom: 10px;
+}
+
+.login-form{
+    padding: 5px;
+}
+
+.form-field{
+    display: inline-block;
+    padding: 5px;
+    margin-top: 20px;
+}
+
+.form-error{
+    display: block;
+    color: rgb(237, 67, 55);
+}
+
+.button{
+    padding: 5px 20px;
+    margin: 20px 0;
+}
