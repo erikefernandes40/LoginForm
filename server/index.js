@@ -1,6 +1,7 @@
 const express = require("express")
 const app =  express()
 const mysql = require("mysql")
+const cors = require("cors")
 
 const db = mysql.createPool({
     host: "localhost",
@@ -20,8 +21,8 @@ app.post("/register", (req, res) => {
         if(err){
             res.send(err)
         }
-        if(result.lenght == 0){
-            db.query("INSERT INTO usuarios (email, password) VALUES (?, ?)", [email, password], (err, result) =>{
+        if(result.length == 0){
+            db.query("INSERT INTO usuarios (email, password) VALUE (?, ?)", [email, password], (err, result) =>{
                 if(err){
                     res.send(err)
                 }
@@ -33,7 +34,24 @@ app.post("/register", (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log('rodando na porta 3000')
+app.post("/login", (req, res) => {
+    const email = req.body.email
+    const password = req.body.password
+
+    db.query("SELECT * FROM usuarios WHERE email = ? AND password = ?", [email, password], (err, result) =>{
+        if(err){
+            res.send(err)
+        }
+        if(result.length > 0){
+            res.send({msg: "Usuario logado com sucesso"})
+        } else{
+            res.send({msg: "Usuario nao encontrado"})
+        }
+    })
+})
+    
+
+app.listen(3001, () => {
+    console.log('rodando na porta 3001')
 })
 
